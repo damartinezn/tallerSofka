@@ -8,4 +8,6 @@ public interface IClienteService extends ICRUD<Cliente, Integer> {
 
     ResponseEntity<?> saveCliente(ClienteDTO clienteDTO);
     ResponseEntity<?> updateCliente(Integer idCliente, ClienteDTO clienteDTO);
+
+    ResponseEntity<?> deleteCliente(Integer idCliente);
 }

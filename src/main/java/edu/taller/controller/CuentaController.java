@@ -35,7 +35,5 @@ public class CuentaController {
     public ResponseEntity<?> actualizar(@PathVariable("id") Integer id, @RequestBody CuentaDTO cuenta){ return service.updateCuenta(id,cuenta); }
 
     @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable("id") Integer id){
-        service.delete(id);
-    }
+    public ResponseEntity<?> eliminar(@PathVariable("id") Integer id){  return service.deleteCuenta(id);     }
 }

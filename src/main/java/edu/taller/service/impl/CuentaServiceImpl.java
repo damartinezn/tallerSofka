@@ -83,4 +83,21 @@ public class CuentaServiceImpl extends CRUDImpl<Cuenta, Integer> implements ICue
         }
     }
 
+    @Override
+    public ResponseEntity<?> deleteCuenta(Integer idCuenta) {
+        Optional<Cuenta> cuentaAux = repo.findById(idCuenta);
+        if (!cuentaAux.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Cuenta no encontrado para el id: "
+                            + idCuenta);
+        }
+        try {
+            repo.delete(cuentaAux.get());
+            return ResponseEntity.status(HttpStatus.OK).body("Cuenta Eliminada");
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("La cuenta posee movimientos registrados");
+        }
+    }
+
 }

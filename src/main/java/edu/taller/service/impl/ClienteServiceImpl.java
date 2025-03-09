@@ -7,8 +7,6 @@ import edu.taller.repo.IClienteRepo;
 import edu.taller.repo.IGenericRepo;
 import edu.taller.service.IClienteService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.amqp.core.AmqpTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -75,5 +73,22 @@ public class ClienteServiceImpl extends CRUDImpl<Cliente, Integer> implements IC
                     .body("No se pudo registrar el cliente.");
         }
         return ResponseEntity.status(HttpStatus.OK).body(save);
+    }
+
+    @Override
+    public ResponseEntity<?> deleteCliente(Integer idCliente) {
+        Optional<Cliente> clienteAux = repo.findById(idCliente);
+        if (!clienteAux.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Cliente no encontrado para el id: " + idCliente);
+        }
+        try{
+            repo.delete(clienteAux.get());
+            return ResponseEntity.status(HttpStatus.OK).body("Cliente Eliminado");
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("El cliente posee cuentas registradas");
+        }
+
     }
 }

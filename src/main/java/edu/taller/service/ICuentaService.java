@@ -10,4 +10,6 @@ public interface ICuentaService extends ICRUD<Cuenta, Integer> {
 
     ResponseEntity<?> updateCuenta(Integer idCuenta, CuentaDTO cuenta);
 
+    ResponseEntity<?> deleteCuenta(Integer idCuenta);
+
 }
