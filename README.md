@@ -9,3 +9,5 @@ Consultamos que exista nuestra imagen con: docker images Nota: El nombre de la i
 Descargamos todas las imágenes que tengamos en el docker-compose.yml y levanta los contenedores con el orden especificado con: docker-compose up 
 
 Nota: Si queremos que el log esté en segundo plano: docker-compose up -d Si queremos eliminar todos los contenedores levantados: docker-compose down Si queremos revisar que contenedores tenemos, podemos usar: docker ps Si queremos ver que imágenes tenemos descargadas hacemos: docker images Para eliminar las imágenes usamos el comando: docker image rm IMAGE_ID
+
+El archivo Taller.postman_collection.json se debe importar desde postman donde tendrá toda la configuración.
